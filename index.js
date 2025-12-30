@@ -24,8 +24,8 @@ app.use((req, res, next) => {
 
 // mTLS Agent con certificados de Azul
 const agent = new https.Agent({
-  cert: process.env.AZUL_CERT,
-  key: process.env.AZUL_KEY,
+  cert: process.env.AZUL_CERT.replace(/\\n/g, '\n'),
+  key: process.env.AZUL_KEY.replace(/\\n/g, '\n'),
   rejectUnauthorized: true
 });
 
@@ -69,5 +69,6 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Azul Proxy running on port ${PORT}`);
 });
+
 
 
