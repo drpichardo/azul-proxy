@@ -1,5 +1,7 @@
+import express from "express";
 import fetch from "node-fetch";
 import https from "https";
+import fs from "fs";
 
 const app = express();
 app.use(express.json());
@@ -22,10 +24,10 @@ app.use((req, res, next) => {
   next();
 });
 
-// mTLS Agent con certificados de Azul
+// mTLS Agent con certificados desde archivos
 const agent = new https.Agent({
-  cert: process.env.AZUL_CERT.replace(/\\n/g, '\n'),
-  key: process.env.AZUL_KEY.replace(/\\n/g, '\n'),
+  cert: fs.readFileSync("/etc/secrets/AZUL_CERT.crt"),
+  key: fs.readFileSync("/etc/secrets/AZUL_KEY.key"),
   rejectUnauthorized: true
 });
 
@@ -69,8 +71,4 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Azul Proxy running on port ${PORT}`);
 });
-
-
-
-
 
