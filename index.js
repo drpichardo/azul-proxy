@@ -1,5 +1,6 @@
 import express from "express";
 import https from "https";
+import fetch from "node-fetch";
 
 const app = express();
 app.use(express.json());
@@ -69,6 +70,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Azul Proxy running on port ${PORT}`);
 });
+
 
 
 
