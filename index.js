@@ -37,7 +37,7 @@ app.post("/azul", async (req, res) => {
   
   try {
     const response = await fetch(
-      process.env.AZUL_URL || "https://pruebas.azul.com.do/WebServices/JSON/default.aspx",
+      process.env.AZUL_URL || "https://pagos.azul.com.do/webservices/JSON/Default.aspx",
       {
         method: "POST",
         headers: {
@@ -71,4 +71,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Azul Proxy running on port ${PORT}`);
 });
+
 
